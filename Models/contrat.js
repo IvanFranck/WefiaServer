@@ -59,6 +59,10 @@ const contratSchema = new Schema({
     serviceProviderId: {
         type: ObjectId,
         required: true
+    },
+    commandId: {
+        type: ObjectId,
+        required: true
     }
 
 });

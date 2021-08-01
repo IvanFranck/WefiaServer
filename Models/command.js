@@ -5,7 +5,7 @@ const { Schema, ObjectId } = mongoose;
 const commandSchema = new Schema({
     status: {
         type: String,
-        required: true
+        default: "en cours"
     },
     date: {
         type: Date,
@@ -22,7 +22,8 @@ const commandSchema = new Schema({
     serviceProviderId: {
         type: ObjectId,
         required: true
-    }
+    },
+    contratId: ObjectId
 
 });
 

@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
-const user = require("./userModel");
+const User = require("./user");
 
 // clone userschema
-let serviceProviderSchema = user.userSchema.clone();
+let serviceProviderSchema = User.userSchema.clone();
 
 // add scpecific properties of service provider schema
 serviceProviderSchema.add({
