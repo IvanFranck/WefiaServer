@@ -102,7 +102,7 @@ exports.logIn = (req, res) => {
  * @param {HTTPResponse} res 
  */
 exports.getOneServiceProvider = (req, res) => {
-    ServiceProvider.findOne({ _id: req.params.id }).then(
+    ServiceProvider.findOne({ _id: req.params.serviceProviderId }).then(
         serviceProvider => {
             if (!serviceProvider){
                 res.status(401).json({
@@ -118,5 +118,18 @@ exports.getOneServiceProvider = (req, res) => {
         error => {
             res.status(401).json({error});
         }
+    );
+};
+
+/**
+ * Get all service providers 
+ * @param {HTTPRequest} req 
+ * @param {HTTPResponse} res 
+ */
+ exports.getAllServiceProviders = (req, res) => {
+    ServiceProvider.find().then(
+        servicesProviders => res.status(200).json(servicesProviders)
+    ).catch(
+        error => res.status(400).json({error})
     );
 };

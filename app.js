@@ -1,6 +1,9 @@
 const express = require ("express");
 const mongoose = require("mongoose");
+
 const userRouter = require ("./Routes/user");
+const serviceRouter = require ("./Routes/service");
+const serviceProviderRouter = require("./Routes/serviceProvider");
 
 //set up database connection
 mongoose.connect("mongodb://localhost:27017/pfe", {useNewUrlParser: true, useUnifiedTopology: true})
@@ -25,6 +28,8 @@ app.use(express.json());
 
 
 app.use("/api/user", userRouter);
+app.use("/api/service", serviceRouter);
+app.use("/api/servieProvider", serviceProviderRouter);
 
 
 module.exports = app;

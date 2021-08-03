@@ -44,7 +44,7 @@ exports.modifyCommand = (req, res) => {
         servcieProviderId: req.body.servcieProviderId
     });
 
-    Command.updateOne({_id: req.params.id}, command).then(
+    Command.updateOne({_id: req.params.commandId}, command).then(
         () => {
             res.status(201).json({
                 message: "Command modified successfully !"
