@@ -3,10 +3,10 @@ const Command = require ('../Models/command');
 /**
  * Create new Command
  * @param {HTTPRequest} req 
- * @param {HTTPResponse} rest 
+ * @param {HTTPResponse} res 
  */
 
-exports.createCommand = (req, rest) =>{
+exports.createCommand = (req, res) =>{
 
     const command = new Command({
         date: req.body.date,
@@ -17,13 +17,13 @@ exports.createCommand = (req, rest) =>{
 
     command.save().then(
         () => {
-            rest.status(201).json({
+            res.status(201).json({
                 message: "command created sucessfully ! "
             });
         }
     ).catch(
         error => {
-            rest.status(400).json({error});
+            res.status(400).json({error});
         }
     );
 };
@@ -32,9 +32,9 @@ exports.createCommand = (req, rest) =>{
 /**
  * Modify a command
  * @param {HTTPRequest} req 
- * @param {HTTPResponse} rest 
+ * @param {HTTPResponse} res 
  */
-exports.modifyCommand = (req, rest) => {
+exports.modifyCommand = (req, res) => {
     const command = new Command ({
         _id: req.params.id,
         status: req.body.id,
@@ -46,13 +46,13 @@ exports.modifyCommand = (req, rest) => {
 
     Command.updateOne({_id: req.params.id}, command).then(
         () => {
-            rest.status(201).json({
+            res.status(201).json({
                 message: "Command modified successfully !"
             });
         }
     ).catch(
         error => {
-            rest.status(400).json({error});
+            res.status(400).json({error});
         }
     );
 };
@@ -60,16 +60,16 @@ exports.modifyCommand = (req, rest) => {
 /**
  * get all commands
  * @param {HTTPRequest} req 
- * @param {HTTPResponse} rest 
+ * @param {HTTPResponse} res 
  */
-exports.getAllCommands = (req, rest) => {
+exports.getAllCommands = (req, res) => {
     Command.find().then(
         (commands) => {
-            rest.status(200).json(commands);
+            res.status(200).json(commands);
         }
     ).catch(
         error => {
-            rest.status(404).json({error});
+            res.status(404).json({error});
         }
     );
 };
@@ -77,18 +77,18 @@ exports.getAllCommands = (req, rest) => {
 /**
  * get one command
  * @param {HTTPRequest} req 
- * @param {HTTPResponse} rest 
+ * @param {HTTPResponse} res 
  */
- exports.getOneCommand = (req, rest) => {
+ exports.getOneCommand = (req, res) => {
     Command.findOne({
         _id: req.params.id
     }).then(
         (command) => {
-            rest.status(200).json(command);
+            res.status(200).json(command);
         }
     ).catch(
         error => {
-            rest.status(404).json({error});
+            res.status(404).json({error});
         }
     );
 };

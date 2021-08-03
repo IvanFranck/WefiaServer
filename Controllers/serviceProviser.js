@@ -1,10 +1,10 @@
 const bcrypt = require('bcrypt');
-const User = require ('../Models/user');
+const ServiceProvider = require ('../Models/serviceProvider');
 const jwt = require("jsonwebtoken");
 
 
 /**
- * Create a new user
+ * Create a new service provider
  * @param {HTTPRequest} req 
  * @param {HTTPResponse} res 
  */
@@ -14,7 +14,7 @@ exports.signUp = (req, res) => {
     */
     bcrypt.hash(req.body.password, 8).then(
         hash =>{
-            const user = new User.userModel({
+            const serviceProvider = new ServiceProvider({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
                 phoneNumber: req.body.phoneNumber,
@@ -23,12 +23,16 @@ exports.signUp = (req, res) => {
                 birthdayPlace: req.body.birthdayPlace,
                 profilePicture: req.body.profilePicture,
                 password: hash,
-                mailAddress: req.body.mailAddress
+                mailAddress: req.body.mailAddress,
+                photoCNI: req.body.photoCNI,
+                services: req.body.services,
+                experience: req.body.experience,
+                description: req.body.description
             })
-            user.save().then(
+            serviceProvider.save().then(
                 () => {
                     res.status(201).json(
-                        {message : "user created successfully !"}
+                        {message : "service Provider created successfully !"}
                     );
                 }
             ).catch( 
@@ -44,19 +48,19 @@ exports.signUp = (req, res) => {
 
 
 /**
- * compare user credentials for log in
+ * compare service Provider credentials for log in
  * @param {HTTPRequest} req 
  * @param {HTTPResponse} res 
  */
 exports.logIn = (req, res) => {
-    User.userModel.findOne({ mailAddress: req.body.mailAddress}).then(
-        user => {
-            if (!user){
+    ServiceProvider.findOne({ mailAddress: req.body.mailAddress}).then(
+        serviceProvider => {
+            if (!serviceProvider){
                 res.status(401).json({
-                    error: new Error("user not found !")
+                    error: new Error("service Provider not found !")
                 });
             }
-            bcrypt.compare(req.body.password, user.password).then(
+            bcrypt.compare(req.body.password, serviceProvider.password).then(
                 valid => {
                     if (!valid) {
                         return res.status(401).json({
@@ -65,17 +69,17 @@ exports.logIn = (req, res) => {
                     }
                     /** 
                      * create token for authentification
-                     * {userId: user_id} is payload
+                     * {serviceProviderId: serviceProvider_id} is payload
                      * 'NEVER_GIVE_UP' is the token secret
                      * and the last parameter is the token config. We set expiration period to 24 hours
                     */
                     const token = jwt.sign(
-                        {userId: user._id},
-                        "NEVER_GIVE_UP",
+                        {serviceProviderId: serviceProvider._id},
+                        process.env.TOKEN_SECRET_WORD,
                         { expiresIn: '24h'}
                     )
                     res.status(200).json({
-                        userId: user._id,
+                        serviceProviderId: serviceProvider._id,
                         token: token
                     });
                 }
@@ -93,21 +97,21 @@ exports.logIn = (req, res) => {
 };
 
 /**
- * Get on user by passing its ID
+ * Get on serviceProvider by passing its ID
  * @param {HTTPRequest} req 
  * @param {HTTPResponse} res 
  */
-exports.getOneUser = (req, res) => {
-    User.userModel.findOne({ _id: req.params.id }).then(
-        user => {
-            if (!user){
+exports.getOneServiceProvider = (req, res) => {
+    ServiceProvider.findOne({ _id: req.params.id }).then(
+        serviceProvider => {
+            if (!serviceProvider){
                 res.status(401).json({
-                    error: new Error("user not found !")
+                    error: new Error("service Provider not found !")
                 });
             }
             res.status(200).json({
-                userId: user._id,
-                message: "user found !"
+                serviceProviderId: serviceProvider._id,
+                message: "service Provider found !"
             });
         }
     ).catch(
