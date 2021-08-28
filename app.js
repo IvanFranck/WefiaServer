@@ -19,6 +19,10 @@ mongoose.connect("mongodb+srv://IvanFranck:SUP'PTICgroupe7@cluster0.bsx7r.mongod
 
 const app = express();
 
+app.get("/", (req,res)=>{
+    res.send("hello !")
+})
+
 // parse body request in JSON
 app.use(express.urlencoded({
     extended: false
