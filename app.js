@@ -6,7 +6,7 @@ const serviceRouter = require ("./Routes/service");
 const serviceProviderRouter = require("./Routes/serviceProvider");
 
 //set up database connection
-mongoose.connect("mongodb://localhost:27017/pfe", {useNewUrlParser: true, useUnifiedTopology: true})
+mongoose.connect("mongodb+srv://IvanFranck:SUP'PTICgroupe7@cluster0.bsx7r.mongodb.net/wefia?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
     .then(() => {
         console.log("successfully connected to MongoDB BD !");
     })
