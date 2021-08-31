@@ -20,7 +20,7 @@ const userSchema = new Schema({
         required: true
     },
     birthdayDate: {
-        type: String,
+        type: Date,
         required: true
     },
     birthdayPlace: {
@@ -29,7 +29,7 @@ const userSchema = new Schema({
     },
     profilePicture: {
         type: String,
-        required: true
+        required: false
     },
     password: {
         type: String,

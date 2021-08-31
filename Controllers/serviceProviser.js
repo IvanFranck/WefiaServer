@@ -27,7 +27,8 @@ exports.signUp = (req, res) => {
                 photoCNI: req.body.photoCNI,
                 services: req.body.services,
                 experience: req.body.experience,
-                description: req.body.description
+                description: req.body.description,
+                RCCId: req.body.RCCId
             })
             serviceProvider.save().then(
                 () => {

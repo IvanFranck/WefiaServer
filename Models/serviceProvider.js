@@ -6,6 +6,7 @@ let serviceProviderSchema = User.userSchema.clone();
 
 // add scpecific properties of service provider schema
 serviceProviderSchema.add({
+    RCCId: String,
     pictureCNI: {
         type: String,
         required: true
