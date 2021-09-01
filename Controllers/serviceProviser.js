@@ -26,7 +26,6 @@ exports.signUp = (req, res) => {
                 mailAddress: req.body.mailAddress,
                 photoCNI: req.body.photoCNI,
                 services: req.body.services,
-                experience: req.body.experience,
                 description: req.body.description,
                 RCCId: req.body.RCCId
             })

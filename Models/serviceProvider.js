@@ -15,11 +15,6 @@ serviceProviderSchema.add({
         type: Array,
         required: true
     },
-    // given in number of years
-    experience: {
-        type: Number,
-        required: true
-    },
     description: {
         type: String,
         required: true
