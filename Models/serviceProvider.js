@@ -8,16 +8,16 @@ let serviceProviderSchema = User.userSchema.clone();
 serviceProviderSchema.add({
     RCCId: String,
     pictureCNI: {
-        type: String,
+        type: Array,
         required: true
     },
-    services: {
-        type: Array,
+    service: {
+        type: String,
         required: true
     },
     description: {
         type: String,
-        required: true
+        required: false
     }
 
 });

@@ -25,7 +25,7 @@ exports.signUp = (req, res) => {
                 password: hash,
                 mailAddress: req.body.mailAddress,
                 photoCNI: req.body.photoCNI,
-                services: req.body.services,
+                service: req.body.service,
                 description: req.body.description,
                 RCCId: req.body.RCCId
             })

@@ -93,7 +93,7 @@ exports.logIn = (req, res) => {
 };
 
 /**
- * Get on user by passing its ID
+ * Get one user by passing its ID
  * @param {HTTPRequest} req 
  * @param {HTTPResponse} res 
  */
