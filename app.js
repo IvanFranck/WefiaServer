@@ -33,7 +33,7 @@ app.use(express.json());
 
 app.use("/api/user", userRouter);
 app.use("/api/service", serviceRouter);
-app.use("/api/servieProvider", serviceProviderRouter);
+app.use("/api/serviceProvider", serviceProviderRouter);
 
 
 module.exports = app;
