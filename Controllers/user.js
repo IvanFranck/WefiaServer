@@ -19,8 +19,8 @@ exports.signUp = (req, res) => {
                 lastName: req.body.lastName,
                 phoneNumber: req.body.phoneNumber,
                 location: req.body.location,
-                birthdayDate: req.body.birthdayDate,
-                birthdayPlace: req.body.birthdayPlace,
+                birthDay: req.body.birthDay,
+                birthPlace: req.body.birthPlace,
                 profilePicture: req.body.profilePicture,
                 password: hash,
                 mailAddress: req.body.mailAddress

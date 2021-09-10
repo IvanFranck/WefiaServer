@@ -19,11 +19,11 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    birthdayDate: {
+    birthDay: {
         type: String,
         required: true
     },
-    birthdayPlace: {
+    birthPlace: {
         required: true,
         type: String
     },
