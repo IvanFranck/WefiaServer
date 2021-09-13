@@ -110,7 +110,7 @@ exports.getOneServiceProvider = (req, res) => {
                 });
             }
             res.status(200).json({
-                serviceProviderId: serviceProvider._id,
+                serviceProvider: serviceProvider,
                 message: "service Provider found !"
             });
         }
