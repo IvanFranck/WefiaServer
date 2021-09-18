@@ -16,14 +16,14 @@ const commandSchema = new Schema({
         required: true
     }, 
     userId: {
-        type: String,
+        type: ObjectId,
         required: true
     },
     serviceProviderId: {
-        type: String,
+        type: ObjectId,
         required: true
     },
-    contratId: String
+    contratId: ObjectId
 
 });
 
