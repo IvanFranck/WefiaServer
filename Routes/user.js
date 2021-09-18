@@ -7,4 +7,6 @@ const userCtrl = require('../Controllers/user');
 router.post("/signUp", userCtrl.signUp);
 router.post("/logIn", userCtrl.logIn);
 
+router.get ("/:id", userCtrl.getOneUser);
+
 module.exports = router;
