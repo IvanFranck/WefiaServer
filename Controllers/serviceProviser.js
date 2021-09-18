@@ -30,10 +30,11 @@ exports.signUp = (req, res) => {
                 RCCId: req.body.RCCId
             })
             serviceProvider.save().then(
-                () => {
-                    res.status(201).json(
-                        {message : "service Provider created successfully !"}
-                    );
+                serviceProvider => {
+                    res.status(201).json({
+                        message : "service Provider created successfully !",
+                        serviceProvider: serviceProvider 
+                    });
                 }
             ).catch( 
                 error => {

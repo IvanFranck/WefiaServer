@@ -16,9 +16,10 @@ exports.createCommand = (req, res) =>{
     });
 
     command.save().then(
-        () => {
+        command => {
             res.status(201).json({
-                message: "command created sucessfully ! "
+                message: "command created sucessfully ! ",
+                command: command
             });
         }
     ).catch(

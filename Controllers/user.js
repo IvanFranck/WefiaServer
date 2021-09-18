@@ -26,10 +26,11 @@ exports.signUp = (req, res) => {
                 mailAddress: req.body.mailAddress
             })
             user.save().then(
-                () => {
-                    res.status(201).json(
-                        {message : "user created successfully !"}
-                    );
+                user => {
+                    res.status(201).json({
+                        message : "user created successfully !",
+                        user: user
+                    });
                 }
             ).catch( 
                 error => {
