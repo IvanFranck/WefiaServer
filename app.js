@@ -35,7 +35,7 @@ app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/service", serviceRouter);
 app.use("/api/serviceProvider", serviceProviderRouter);
-app.use("/api/command");
+app.use("/api/command", commandRouter);
 
 
 module.exports = app;
