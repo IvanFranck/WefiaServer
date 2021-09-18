@@ -4,6 +4,7 @@ const mongoose = require("mongoose");
 const userRouter = require ("./Routes/user");
 const serviceRouter = require ("./Routes/service");
 const serviceProviderRouter = require("./Routes/serviceProvider");
+const commandRouter = require("./Routes/Command");
 
 //set up database connection
 mongoose.connect("mongodb+srv://IvanFranck:SUP'PTICgroupe7@cluster0.bsx7r.mongodb.net/wefia?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true})
@@ -34,6 +35,7 @@ app.use(express.json());
 app.use("/api/user", userRouter);
 app.use("/api/service", serviceRouter);
 app.use("/api/serviceProvider", serviceProviderRouter);
+app.use("/api/command");
 
 
 module.exports = app;
