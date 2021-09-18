@@ -18,6 +18,10 @@ serviceProviderSchema.add({
     description: {
         type: String,
         required: false
+    },
+    status: {
+        type: String,
+        default: "debutant"
     }
 
 });
