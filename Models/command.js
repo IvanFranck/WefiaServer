@@ -13,7 +13,7 @@ const commandSchema = new Schema({
     },
     details: {
         type: String,
-        required: true
+        required: false
     }, 
     userId: {
         type: ObjectId,
