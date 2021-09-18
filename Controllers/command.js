@@ -11,8 +11,8 @@ exports.createCommand = (req, res) =>{
     const command = new Command({
         date: req.body.date,
         details: req.body.details,
-        userId: req.params.userId,
-        servcieProviderId: req.params.servcieProviderId
+        userId: req.body.userId,
+        servcieProviderId: req.body.servcieProviderId
     });
 
     command.save().then(
