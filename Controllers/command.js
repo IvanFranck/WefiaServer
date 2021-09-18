@@ -12,7 +12,7 @@ exports.createCommand = (req, res) =>{
         date: req.body.date,
         details: req.body.details,
         userId: req.body.userId,
-        servcieProviderId: req.body.servcieProviderId
+        serviceProviderId: req.body.serviceProviderId
     });
 
     command.save().then(
