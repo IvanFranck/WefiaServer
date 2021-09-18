@@ -9,7 +9,7 @@ const commandSchema = new Schema({
     },
     date: {
         type: Date,
-        required: true
+        default: Date.now()
     },
     details: {
         type: String,
