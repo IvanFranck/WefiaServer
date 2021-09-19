@@ -5,7 +5,7 @@ const { Schema, ObjectId } = mongoose;
 const commandSchema = new Schema({
     status: {
         type: String,
-        default: "en cours"
+        default: "en attente"
     },
     date: {
         type: Date,

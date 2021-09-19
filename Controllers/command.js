@@ -10,6 +10,7 @@ exports.createCommand = (req, res) =>{
 
     const command = new Command({
         date: req.body.date,
+        status: req.body.status,
         details: req.body.details,
         userId: req.body.userId,
         serviceProviderId: req.body.serviceProviderId
@@ -93,3 +94,28 @@ exports.getAllCommands = (req, res) => {
         }
     );
 };
+
+/**
+ * 
+ * Get all commands passed by one user
+ */
+
+exports.getUserCommands = (req, res) => {
+    Command.find({userId: req.params.userId}).then(
+        commands => {
+            if (commands){
+                res.status(200).json({
+                    commands: commands
+                });
+            }else{
+                res.status(401).json({
+                    error: new Error("commands not found for this user !")
+                });
+            }
+        }
+    ).catch(
+        error => {
+            res.status(401).json({error});
+        }
+    )
+}
