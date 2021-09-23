@@ -1,5 +1,5 @@
 const bcrypt = require('bcrypt');
-const User = require ('../Models/user');
+const User = require('../Models/user');
 const jwt = require("jsonwebtoken");
 
 
@@ -13,7 +13,7 @@ exports.signUp = (req, res) => {
      *  and take more time to hash password
     */
     bcrypt.hash(req.body.password, 8).then(
-        hash =>{
+        hash => {
             const user = new User.userModel({
                 firstName: req.body.firstName,
                 lastName: req.body.lastName,
@@ -28,14 +28,14 @@ exports.signUp = (req, res) => {
             user.save().then(
                 user => {
                     res.status(201).json({
-                        message : "user created successfully !",
+                        message: "user created successfully !",
                         user: user
                     });
                 }
-            ).catch( 
+            ).catch(
                 error => {
                     res.status(400).json(
-                        {error}
+                        { error }
                     );
                 }
             )
@@ -50,9 +50,9 @@ exports.signUp = (req, res) => {
  * @param {HTTPResponse} res 
  */
 exports.logIn = (req, res) => {
-    User.userModel.findOne({ mailAddress: req.body.mailAddress}).then(
+    User.userModel.findOne({ mailAddress: req.body.mailAddress }).then(
         user => {
-            if (!user){
+            if (!user) {
                 res.status(401).json({
                     error: new Error("user not found !")
                 });
@@ -71,9 +71,9 @@ exports.logIn = (req, res) => {
                      * and the last parameter is the token config. We set expiration period to 24 hours
                     */
                     const token = jwt.sign(
-                        {userId: user._id},
+                        { userId: user._id },
                         "NEVER_GIVE_UP",
-                        { expiresIn: '24h'}
+                        { expiresIn: '24h' }
                     )
                     res.status(200).json({
                         userId: user._id,
@@ -82,13 +82,13 @@ exports.logIn = (req, res) => {
                 }
             ).catch(
                 error => {
-                    res.status(500).json({error})
+                    res.status(500).json({ error })
                 }
             );
         }
     ).catch(
         error => {
-            res.status(500).json({error});
+            res.status(500).json({ error });
         }
     );
 };
@@ -101,7 +101,7 @@ exports.logIn = (req, res) => {
 exports.getOneUser = (req, res) => {
     User.userModel.findOne({ _id: req.params.id }).then(
         user => {
-            if (!user){
+            if (!user) {
                 res.status(401).json({
                     error: new Error("user not found !")
                 });
@@ -112,7 +112,30 @@ exports.getOneUser = (req, res) => {
         }
     ).catch(
         error => {
-            res.status(401).json({error});
+            res.status(401).json({ error });
+        }
+    );
+};
+
+
+exports.setProfilPicture = (req, res) => {
+    const filter = { _id: req.params.id };
+    const update = { profilePicture: req.body.profilePicture };
+
+    User.userModel.findOneAndUpdate(filter, update, { new: true }).then(
+        user => {
+            if (!user) {
+                res.status(401).json({
+                    error: new Error("user not found !")
+                });
+            }
+            res.status(200).json({
+                user: user
+            });
+        }
+    ).catch(
+        error => {
+            res.status(401).json({ error });
         }
     );
 };

@@ -6,6 +6,7 @@ const userCtrl = require('../Controllers/user');
 
 router.post("/signUp", userCtrl.signUp);
 router.post("/logIn", userCtrl.logIn);
+router.post("/update/profilePicture/:id", userCtrl.setProfilPicture)
 
 router.get ("/:id", userCtrl.getOneUser);
 
